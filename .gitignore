@@ -1,0 +1,13 @@
+.DS_Store
+
+# VIM Backup Files
+*.swp
+*.swo
+
+# IntelliJ Backup Files
+.idea
+
+
+node_modules/
+coverage/
+dist/
