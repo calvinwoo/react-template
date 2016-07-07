@@ -10,10 +10,15 @@ class Index extends Component {
           status='success'
           title='Disaster :('
           subtitle='Someone took the last bag of Cheetos!'
+          handleClick={callback}
         />
       </div>
     );
   }
+};
+
+const callback = () => {
+  console.log('Callback executed!');
 };
 
 ReactDOM.render(<Index />, document.getElementById('content'));

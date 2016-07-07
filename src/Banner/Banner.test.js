@@ -1,6 +1,7 @@
 import {expect} from 'chai';
 import React from 'react';
 import {shallow} from 'enzyme';
+import {spy} from 'sinon';
 import Banner from '../../src/Banner/Banner';
 
 describe('Banner Component', () => {
@@ -20,10 +21,10 @@ describe('Banner Component', () => {
 
     expect(
       shallow(<Banner subtitle={subtitle} />)
-        .find('.subtitle')
         .text()
+        .includes(subtitle)
     )
-      .to.equal(subtitle);
+      .to.be.true;
   });
 
   it('pulses only after the button is clicked', () => {
@@ -36,5 +37,19 @@ describe('Banner Component', () => {
       .simulate('click');
 
     expect(wrapper.hasClass('pulse')).to.be.true;
+  });
+
+  it('executes callback function after the button is clicked', () => {
+    const props = {
+      handleClick: () => {}
+    };
+
+    const handleClickSpy = spy(props, 'handleClick');
+
+    shallow(<Banner {...props} />)
+      .find('button')
+      .simulate('click');
+
+    expect(handleClickSpy.called).to.be.true;
   });
 });
